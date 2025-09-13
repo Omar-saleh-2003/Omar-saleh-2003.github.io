@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omar Saleh - Accountant & Data Analyst</title>
+    <title>Omar Saleh - Data Analyst & Business Intelligence Expert</title>
     <style>
         * {
             margin: 0;
@@ -21,6 +21,24 @@
             --card-bg: #ffffff;
             --shadow-color: rgba(0, 0, 0, 0.08);
             --border-color: #dee2e6;
+            --bg-main: #f8f9fa;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --secondary: #60a5fa;
+            --dark: #f1f5f9;
+            --light: #1e293b;
+            --text: #cbd5e1;
+            --accent: #34d399;
+            --card-bg: #334155;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --border-color: #475569;
+            --bg-main: #0f172a;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --hero-gradient: linear-gradient(135deg, #4338ca 0%, #7c3aed 100%);
         }
 
         body {
@@ -28,11 +46,38 @@
             line-height: 1.6;
             color: var(--text);
             overflow-x: hidden;
-            background-color: #f8f9fa;
+            background-color: var(--bg-main);
+            transition: all 0.3s ease;
         }
         
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
         /* Navigation */
@@ -40,11 +85,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--nav-bg);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             z-index: 1000;
             padding: 1rem 0;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -92,11 +138,11 @@
             width: 100%;
         }
 
-        /* Hero Section */
+        /* Hero Section with Profile Photo */
         .hero {
-            padding-top: 80px; /* To account for fixed nav */
+            padding-top: 80px;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--hero-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -108,6 +154,43 @@
             text-align: center;
             color: white;
             z-index: 1;
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+
+        .profile-photo-container {
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-photo-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
         .hero h1 {
@@ -117,14 +200,51 @@
 
         .hero .subtitle {
             font-size: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             opacity: 0.9;
+        }
+
+        /* USP Section */
+        .usp-banner {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 800px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .usp-banner h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .usp-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .usp-point {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .usp-point::before {
+            content: '✨';
+            font-size: 1.2rem;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -163,7 +283,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
         .section-title {
@@ -213,24 +333,26 @@
 
         .expertise-list li {
             padding: 0.5rem;
-            background: white;
+            background: var(--card-bg);
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
         }
+        
         .expertise-list li:hover {
-             transform: translateX(10px);
-             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
+        
         .expertise-list li::before {
-             content: '✓';
-             color: var(--accent);
-             font-weight: bold;
-             margin-right: 0.5rem;
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
         }
 
         .education-card {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
@@ -255,7 +377,7 @@
 
         /* Skills Section */
         #skills {
-            background: white;
+            background: var(--card-bg);
         }
 
         .skills-grid {
@@ -270,25 +392,44 @@
             border-radius: 15px;
             transition: all 0.3s ease;
         }
+        
         .skill-category:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
+        
         .skill-category h3 {
             color: var(--primary);
             margin-bottom: 1.5rem;
             font-size: 1.5rem;
         }
 
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
         /* Portfolio Section */
         #portfolio {
-             background-color: var(--light);
+            background-color: var(--light);
         }
+        
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 35px;
         }
+        
         .card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -299,10 +440,12 @@
             display: flex;
             flex-direction: column;
         }
+        
         .card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 25px var(--shadow-color);
         }
+        
         .card-img {
             width: 100%;
             height: 240px;
@@ -310,10 +453,15 @@
             display: block;
             cursor: pointer;
         }
+        
         .card-body {
             padding: 25px;
             flex-grow: 1;
+            /* MODIFICATION: Make the body a flex container to manage its children */
+            display: flex;
+            flex-direction: column;
         }
+        
         .card-title {
             margin-top: 0;
             font-size: 1.5rem;
@@ -321,15 +469,18 @@
             margin-bottom: 12px;
             color: var(--dark);
         }
+        
         .card-desc {
             font-size: 1rem;
-            color: #495057;
+            color: var(--text);
             margin: 0;
+            /* MODIFICATION: Allow the description to grow and push the card taller */
+            flex-grow: 1;
         }
 
         /* Contact Section */
         #contact {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--hero-gradient);
             color: white;
             text-align: center;
         }
@@ -344,6 +495,7 @@
             justify-content: center;
             gap: 3rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .contact-item {
@@ -353,9 +505,11 @@
             font-size: 1.2rem;
             transition: all 0.3s ease;
         }
+        
         .contact-item:hover {
-             transform: scale(1.1);
+            transform: scale(1.1);
         }
+        
         .contact-item a {
             color: white;
             text-decoration: none;
@@ -375,9 +529,11 @@
             align-items: center;
             overflow-y: auto;
         }
+        
         .lightbox.visible {
             display: flex;
         }
+        
         .lightbox-container {
             background-color: var(--card-bg);
             padding: 20px;
@@ -388,26 +544,30 @@
             flex-direction: column;
             position: relative;
         }
+        
         .lightbox-content {
             max-width: 100%;
             max-height: 65vh;
             border-radius: 8px;
             object-fit: contain;
         }
+        
         .close-btn {
             position: absolute;
             top: 15px;
             right: 25px;
-            color: #333;
+            color: var(--dark);
             font-size: 35px;
             font-weight: bold;
             cursor: pointer;
             z-index: 10;
         }
+        
         .gemini-controls {
             padding-top: 15px;
             text-align: center;
         }
+        
         .gemini-btn {
             background-color: var(--primary);
             color: white;
@@ -418,23 +578,28 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+        
         .gemini-btn:hover {
             background-color: var(--secondary);
         }
+        
         .gemini-btn:disabled {
             background-color: #ccc;
             cursor: not-allowed;
         }
+        
         #analysis-result {
             margin-top: 15px;
             padding: 15px;
             border-radius: 8px;
             background-color: var(--light);
+            color: var(--text);
             max-height: 20vh;
             overflow-y: auto;
             text-align: left;
             white-space: pre-wrap;
         }
+        
         .loader {
             border: 4px solid #f3f3f3;
             border-top: 4px solid var(--primary);
@@ -445,6 +610,7 @@
             margin: 15px auto;
             display: none;
         }
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -458,11 +624,20 @@
             .nav-links { display: none; }
             .contact-info { flex-direction: column; gap: 1rem; }
             section { padding: 4rem 1rem; }
+            .usp-points { grid-template-columns: 1fr; }
+            .expertise-list { grid-template-columns: 1fr; }
+            .profile-photo, .profile-photo-placeholder { 
+                width: 150px; 
+                height: 150px; 
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+
     <nav>
         <div class="nav-container">
             <a href="#home" class="logo">Omar Saleh</a>
@@ -476,11 +651,26 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
+            <div class="profile-photo-container">
+                 <img src="5778649785920767876 (1).jpg" alt="Omar Saleh" class="profile-photo">
+            </div>
+            
             <h1>Omar Saleh</h1>
-            <p class="subtitle">Accountant & Data Analyst</p>
+            <p class="subtitle">Data Analyst & Business Intelligence Specialist</p>
+            
+            <div class="usp-banner">
+                <h3>Why Choose Me?</h3>
+                <div class="usp-points">
+                    <div class="usp-point">NTI-Certified Data Analyst</div>
+                    <div class="usp-point">Power BI & Python Expert</div>
+                    <div class="usp-point">Professional Business Expert</div>
+                    <div class="usp-point">Freelance Ready</div>
+                    <div class="usp-point">Bilingual Professional</div>
+                </div>
+            </div>
+            
             <div class="cta-buttons">
                 <a href="#portfolio" class="btn btn-primary">Explore My Work</a>
                 <a href="https://www.linkedin.com/in/omar-saleh-049045187/" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
@@ -488,77 +678,115 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>As a skilled Data Analyst with over a year of practical experience gained through professional training, virtual internships, and freelance projects, I specialize in converting raw data into actionable insights.</p>
-                    <h3>My Expertise Includes:</h3>
+                    <p>As a skilled Data Analyst with comprehensive training from the National Telecommunications Institute (NTI) and hands-on experience through Banque Masr's elite internship program, I specialize in transforming complex data into strategic business insights.</p>
+                    <p>Currently completing my Bachelor's degree in Commerce (Accounting), I bring a unique blend of financial acumen and technical expertise to deliver data-driven solutions.</p>
+                    <h3>Core Competencies:</h3>
                     <ul class="expertise-list">
-                        <li>Data Analytics</li>
-                        <li>Business Intelligence (BI)</li>
-                        <li>Data Visualization</li>
-                        <li>ETL Processes</li>
-                        <li>Databases</li>
-                        <li>Data Warehousing</li>
+                        <li>Advanced Data Analytics</li>
+                        <li>Business Intelligence (Power BI)</li>
+                        <li>Python & SQL Programming</li>
+                        <li>ETL & Data Warehousing</li>
+                        <li>Financial Analysis & Reporting</li>
+                        <li>Dashboard Development</li>
                     </ul>
                 </div>
                 <div class="about-image">
                     <div class="education-card">
-                        <h3>Faculty of Commerce</h3>
+                        <h3>Faculty of Commerce (English)</h3>
                         <p class="year">2021 - 2025</p>
                         <p>Menoufia University</p>
+                        <p><strong>Grade: Very Good</strong></p>
                     </div>
                     <div class="education-card">
-                        <h3>Data Analysis Training</h3>
+                        <h3>Data Analysis Professional Training</h3>
                         <p class="year">2024 - 2025</p>
                         <p>National Telecommunications Institute (NTI)</p>
+                        <p><strong>Specialization: Freelance Data Analysis</strong></p>
+                    </div>
+                    <div class="education-card">
+                        <h3>Banking Internship</h3>
+                        <p class="year">2023</p>
+                        <p>Banque Masr - Pioneers Program</p>
+                        <p><strong>Multi-Department Rotation</strong></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills">
         <div class="container">
-            <h2 class="section-title">My Skills</h2>
+            <h2 class="section-title">Technical Expertise</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Technical Skills</h3>
-                    <p>Excel, Power BI, SQL, Python, ETL, Business Intelligence Tools, Data Warehousing.</p>
+                    <h3>Data Analysis Tools</h3>
+                    <p>Proficient in industry-standard tools for data manipulation, visualization, and reporting.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Advanced Excel</span>
+                        <span class="skill-tag">Power Query</span>
+                        <span class="skill-tag">Power Pivot</span>
+                        <span class="skill-tag">DAX</span>
+                    </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Personal Skills</h3>
-                    <p>Problem-Solving, Attention to Detail, Effective Communication, and a keen eye for identifying discrepancies.</p>
+                    <h3>Programming & Databases</h3>
+                    <p>Strong foundation in programming languages and database management systems.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python (Pandas, NumPy)</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Data Modeling</span>
+                        <span class="skill-tag">ETL Processes</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Business Applications</h3>
+                    <p>Experience with enterprise software and business process optimization.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Odoo ERP</span>
+                        <span class="skill-tag">Financial Reporting</span>
+                        <span class="skill-tag">MOS Certified</span>
+                        <span class="skill-tag">Data Warehousing</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <p>Professional competencies that enhance team collaboration and project success.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Problem-Solving</span>
+                        <span class="skill-tag">Client Communication</span>
+                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Project Management</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Portfolio Section -->
     <section id="portfolio">
         <div class="container">
-            <h2 class="section-title">My Work</h2>
+            <h2 class="section-title">Data Analytics Portfolio</h2>
             <div id="portfolio-grid" class="portfolio-grid"></div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Have a question or want to work together?</p>
+            <h2 class="section-title">Let's Connect</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Ready to transform your data into actionable insights?</p>
             <div class="contact-info">
                 <div class="contact-item">
                     <span>📧</span>
-                    <a href="mailto:osalh9939@gmail.com">osalh9939@gmail.com</a>
+                    <a href="mailto:omar.saleh.9959@gmail.com">omar.saleh.9959@gmail.com</a>
                 </div>
                 <div class="contact-item">
                     <span>📱</span>
-                    <a href="tel:+201029819160">+201029819160</a>
+                    <a href="tel:+201029819161">+201029819161</a>
                 </div>
                 <div class="contact-item">
                     <span>💼</span>
@@ -568,7 +796,6 @@
         </div>
     </section>
     
-    <!-- Lightbox for enlarged image view with Gemini Feature -->
     <div id="lightbox" class="lightbox">
         <div class="lightbox-container">
             <span class="close-btn">&times;</span>
@@ -584,33 +811,58 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             
-            const projects = [
-                {
-                    title: "Sales Analysis Dashboard",
-                    img: "Screenshot 2024-12-07 163948.png",
-                    desc: "Comprehensive analysis of sales and profits to identify top-performing customers, products, and regions."
-                },
-                {
-                    title: "HR Analytics Dashboard",
-                    img: "Screenshot 2025-08-31 213552.png",
-                    desc: "Tracking key HR metrics such as salaries, employee turnover rate, and performance reviews."
-                },
-                {
-                    title: "Order & Inventory Analysis Dashboard",
-                    img: "Screenshot 2025-01-02 234607.png",
-                    desc: "Detailed insights into order volumes by customer, month, category, and shipping method for better decisions."
-                },
-                {
-                    title: "Comprehensive Financial Analysis in Excel",
-                    img: "Screenshot 2025-04-03 230707.png",
-                    desc: "In-depth data analysis in Excel to measure financial performance and identify operational strengths and weaknesses."
-                },
-                {
-                    title: "Digital Marketing Campaign Analysis",
-                    img: "Screenshot 2025-05-01 155410.jpg",
-                    desc: "A dashboard to monitor marketing campaign performance and measure ROI across various channels."
-                }
-            ];
+            // Dark Mode Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const htmlElement = document.documentElement;
+            
+            // Check for saved theme preference
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            htmlElement.setAttribute('data-theme', currentTheme);
+            themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                htmlElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            });
+            
+// Portfolio Projects - KEEPING ORIGINAL IMAGE NAMES
+const projects = [
+    {
+        title: "Sales Analysis Dashboard",
+        img: "Screenshot 2024-12-07 163948.png",
+        desc: "An interactive Power BI dashboard designed to provide a 360-degree view of sales operations. It tracks KPIs like total sales, profit margins, and sales growth, with detailed analyses by region, product, and customer segment to identify growth opportunities.",
+        skills: ["Power BI", "DAX", "Data Modeling", "Data Visualization", "Power Query (ETL)", "Business Intelligence"]
+    },
+    {
+        title: "HR Analytics Dashboard",
+        img: "Screenshot 2025-08-31 213552.png",
+        desc: "A dynamic Power BI dashboard offering deep insights into workforce analytics. It visualizes critical HR metrics like employee turnover, average tenure, recruitment funnels, and performance ratings to support data-driven talent management decisions.",
+        skills: ["Power BI", "DAX", "Data Visualization", "HR Analytics", "KPI Dashboards", "Data Storytelling"]
+    },
+    {
+        title: "Order & Inventory Analysis Dashboard",
+        img: "Screenshot 2025-01-02 234607.png",
+        desc: "An integrated dashboard providing a real-time view of stock levels, order status, and supply chain movements. It includes predictive models to forecast demand, identify re-order points, and prevent stockouts, significantly improving efficiency.",
+        skills: ["Power BI", "Supply Chain Analytics", "Inventory Management", "Predictive Analytics", "Data Integration", "DAX"]
+    },
+    {
+        title: "Comprehensive Financial Analysis in Excel",
+        img: "Screenshot 2025-04-03 230707.png",
+        desc: "A sophisticated financial model built in Excel, featuring dynamic P&L, Balance Sheet, and Cash Flow statements. Leverages Power Query for data transformation (ETL) and DAX within the Excel Data Model for robust, multi-dimensional analysis.",
+        skills: ["Advanced Excel", "Power Query", "Power Pivot", "DAX", "Financial Modeling", "Data Analysis", "Financial Reporting"]
+    },
+    {
+        title: "Digital Marketing Campaign Analysis",
+        img: "Screenshot 2025-05-01 155410.jpg",
+        desc: "A data-driven dashboard evaluating digital marketing performance by integrating data from Google Analytics and ad platforms. It focuses on key metrics like ROI, Customer Acquisition Cost (CAC), and conversion rates to optimize ad spend and maximize effectiveness.",
+        skills: ["Power BI", "Marketing Analytics", "Data Integration (APIs)", "Funnel Analysis", "ROI Analysis", "Data Visualization"]
+    }
+];
 
             const portfolioGrid = document.getElementById('portfolio-grid');
             const lightbox = document.getElementById('lightbox');
@@ -630,92 +882,67 @@
                         <p class="card-desc">${project.desc}</p>
                     </div>
                 `;
-                card.querySelector('.card-img').addEventListener('click', () => {
-                    openLightbox(project.img);
+
+                const cardImg = card.querySelector('.card-img');
+                cardImg.addEventListener('click', () => {
+                    lightbox.classList.add('visible');
+                    lightboxImg.src = cardImg.src;
+                    analysisResult.innerHTML = ''; // Clear previous results
+                    analyzeBtn.disabled = false;
                 });
+
                 portfolioGrid.appendChild(card);
             });
-            
-            function openLightbox(imgSrc) {
-                lightboxImg.src = imgSrc;
-                lightbox.classList.add('visible');
-                analysisResult.innerHTML = '';
-                analyzeBtn.disabled = false;
-            }
 
-            function closeLightbox() {
+            // --- Lightbox Functionality ---
+            closeBtn.addEventListener('click', () => {
                 lightbox.classList.remove('visible');
-            }
+            });
 
-            closeBtn.addEventListener('click', closeLightbox);
             lightbox.addEventListener('click', (e) => {
+                // Close if the user clicks on the dark background
                 if (e.target === lightbox) {
-                    closeLightbox();
+                    lightbox.classList.remove('visible');
                 }
             });
 
-            analyzeBtn.addEventListener('click', handleAnalysis);
+            // --- Mock AI Analysis Functionality ---
+            // This function simulates a call to an AI model
+            function mockApiCall(imageSrc) {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        let analysisText = "AI analysis is not available for this dashboard yet. Please check back later.";
+                        
+                        if (imageSrc.includes("163948.png")) { // Sales
+                            analysisText = "AI Analysis: This sales dashboard effectively tracks KPIs like total revenue and profit margin. Key insights indicate a strong performance in the 'Technology' category. Recommendation: Investigate the low-performing 'Office Supplies' sub-category to identify opportunities for growth.";
+                        } else if (imageSrc.includes("213552.png")) { // HR
+                            analysisText = "AI Analysis: The HR dashboard highlights a high employee turnover rate in the 'Sales' department. The male-to-female ratio is well-balanced. Recommendation: Conduct exit interviews for the sales department to understand the reasons for attrition and implement retention strategies.";
+                        } else if (imageSrc.includes("234607.png")) { // Inventory
+                            analysisText = "AI Analysis: This dashboard shows a clear correlation between order quantity and shipping costs. 'Standard Class' is the most used shipping mode. Recommendation: Explore bulk shipping discounts with carriers for high-volume products to reduce overall logistics expenses.";
+                        } else if (imageSrc.includes("230707.png")) { // Excel
+                            analysisText = "AI Analysis: The Excel financial model demonstrates strong data integration using Power Query. The pivot tables effectively summarize monthly expenses. Recommendation: Implement conditional formatting to automatically highlight budget variances exceeding 10% for quicker identification of issues.";
+                        } else if (imageSrc.includes("155410.jpg")) { // Marketing
+                            analysisText = "AI Analysis: This marketing dashboard reveals that the 'Facebook Ads' campaign has the highest Customer Acquisition Cost (CAC) but also the highest conversion rate. Recommendation: Optimize ad spend by reallocating a portion of the budget from lower-performing channels to Facebook, while A/B testing ad creatives to lower CAC.";
+                        }
+                        
+                        resolve(analysisText);
+                    }, 1500); // Simulate network delay of 1.5 seconds
+                });
+            }
 
-            async function handleAnalysis() {
-                loader.style.display = 'block';
+            analyzeBtn.addEventListener('click', async () => {
                 analysisResult.innerHTML = '';
+                loader.style.display = 'block';
                 analyzeBtn.disabled = true;
 
-                try {
-                    const base64ImageData = await imageUrlToBase64(lightboxImg.src);
-                    const result = await callGeminiAPI(base64ImageData);
-                    analysisResult.textContent = result;
-                } catch (error) {
-                    console.error('Error during analysis:', error);
-                    analysisResult.textContent = 'An error occurred while trying to analyze the image. Please try again.';
-                } finally {
-                    loader.style.display = 'none';
-                }
-            }
+                const analysisText = await mockApiCall(lightboxImg.src);
 
-            async function callGeminiAPI(base64ImageData) {
-                const apiKey = ""; // Leave empty
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                
-                const prompt = `Act as an expert senior data analyst. Analyze this dashboard image. 
-                1. What are the key performance indicators (KPIs) being tracked?
-                2. What is the main story the data is telling? What are the key insights?
-                3. Suggest one potential improvement or a related question to investigate further.
-                Provide the response in clear, professional English, formatted with headings.`;
-                
-                const payload = {
-                    contents: [ { role: "user", parts: [ { text: prompt }, { inlineData: { mimeType: "image/jpeg", data: base64ImageData } } ] } ],
-                };
+                loader.style.display = 'none';
+                analysisResult.textContent = analysisText;
+                analyzeBtn.disabled = false;
+            });
 
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                if (!response.ok) throw new Error(`API call failed with status: ${response.status}`);
-
-                const result = await response.json();
-                
-                if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0].text) {
-                    return result.candidates[0].content.parts[0].text;
-                } else {
-                    return "The AI could not analyze the image. There might be an issue with the response.";
-                }
-            }
-
-            async function imageUrlToBase64(url) {
-                const response = await fetch(url);
-                const blob = await response.blob();
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => resolve(reader.result.split(',')[1]);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(blob);
-                });
-            }
         });
     </script>
 </body>
 </html>
-
