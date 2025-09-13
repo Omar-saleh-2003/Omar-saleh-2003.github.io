@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar Saleh - Accountant & Data Analyst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --text: #475569;
+            --accent: #10b981;
+            --card-bg: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 80px; /* To account for fixed nav */
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .expertise-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .expertise-list li {
+            padding: 0.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .expertise-list li:hover {
+             transform: translateX(10px);
+             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .expertise-list li::before {
+             content: '✓';
+             color: var(--accent);
+             font-weight: bold;
+             margin-right: 0.5rem;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .education-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .year {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+             background-color: var(--light);
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 35px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px var(--shadow-color);
+        }
+        .card-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+        }
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+        }
+        .card-title {
+            margin-top: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        .card-desc {
+            font-size: 1rem;
+            color: #495057;
+            margin: 0;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        #contact .section-title, #contact .section-title::after {
+            color: white;
+            background: white;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .contact-item:hover {
+             transform: scale(1.1);
+        }
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Lightbox Design */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.88);
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+        .lightbox.visible {
+            display: flex;
+        }
+        .lightbox-container {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .lightbox-content {
+            max-width: 100%;
+            max-height: 65vh;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #333;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .gemini-controls {
+            padding-top: 15px;
+            text-align: center;
+        }
+        .gemini-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .gemini-btn:hover {
+            background-color: var(--secondary);
+        }
+        .gemini-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #analysis-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--light);
+            max-height: 20vh;
+            overflow-y: auto;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 15px auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subtitle { font-size: 1.2rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .contact-info { flex-direction: column; gap: 1rem; }
+            section { padding: 4rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">Omar Saleh</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">My Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Omar Saleh</h1>
+            <p class="subtitle">Accountant & Data Analyst</p>
+            <div class="cta-buttons">
+                <a href="#portfolio" class="btn btn-primary">Explore My Work</a>
+                <a href="https://www.linkedin.com/in/omar-saleh-049045187/" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>As a skilled Data Analyst with over a year of practical experience gained through professional training, virtual internships, and freelance projects, I specialize in converting raw data into actionable insights.</p>
+                    <h3>My Expertise Includes:</h3>
+                    <ul class="expertise-list">
+                        <li>Data Analytics</li>
+                        <li>Business Intelligence (BI)</li>
+                        <li>Data Visualization</li>
+                        <li>ETL Processes</li>
+                        <li>Databases</li>
+                        <li>Data Warehousing</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <div class="education-card">
+                        <h3>Faculty of Commerce</h3>
+                        <p class="year">2021 - 2025</p>
+                        <p>Menoufia University</p>
+                    </div>
+                    <div class="education-card">
+                        <h3>Data Analysis Training</h3>
+                        <p class="year">2024 - 2025</p>
+                        <p>National Telecommunications Institute (NTI)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <p>Excel, Power BI, SQL, Python, ETL, Business Intelligence Tools, Data Warehousing.</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Personal Skills</h3>
+                    <p>Problem-Solving, Attention to Detail, Effective Communication, and a keen eye for identifying discrepancies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">My Work</h2>
+            <div id="portfolio-grid" class="portfolio-grid"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Have a question or want to work together?</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="mailto:osalh9939@gmail.com">osalh9939@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <a href="tel:+201029819160">+201029819160</a>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <a href="https://www.linkedin.com/in/omar-saleh-049045187/" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Lightbox for enlarged image view with Gemini Feature -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-container">
+            <span class="close-btn">&times;</span>
+            <img class="lightbox-content" id="lightbox-img">
+            <div class="gemini-controls">
+                <button id="analyze-btn" class="gemini-btn">✨ Analyze Dashboard with AI</button>
+            </div>
+            <div id="loader" class="loader"></div>
+            <div id="analysis-result"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const projects = [
+                {
+                    title: "Sales Analysis Dashboard",
+                    img: "Screenshot C:\Users\Omar\Desktop\مشروعات\مشروع تخرج\Portfolio\unnamed.png-12-07 163948.png",
+                    desc: "Comprehensive analysis of sales and profits to identify top-performing customers, products, and regions."
+                },
+                {
+                    title: "HR Analytics Dashboard",
+                    img: "C:\Users\Omar\Desktop\مشروعات\مشروع تخرج\Portfolio\Screenshot 2025-08-31 213552.png",
+                    desc: "Tracking key HR metrics such as salaries, employee turnover rate, and performance reviews."
+                },
+                {
+                    title: "Order & Inventory Analysis Dashboard",
+                    img: "ScreenshotC:\Users\Omar\Desktop\مشروعات\مشروع تخرج\Portfolio\unnamed (1).png 2025-01-02 234607.png",
+                    desc: "Detailed insights into order volumes by customer, month, category, and shipping method for better decisions."
+                },
+                {
+                    title: "Comprehensive Financial Analysis in Excel",
+                    img: "ScreenshC:\Users\Omar\Desktop\مشروعات\مشروع تخرج\Portfolio\Screenshot 2025-04-03 230707.pngt 2025-04-03 230707.png",
+                    desc: "In-depth data analysis in Excel to measure financial performance and identify operational strengths and weaknesses."
+                },
+                {
+                    title: "Digital Marketing Campaign Analysis",
+                    img: "Screenshot 2025-05-01 C:\Users\Omar\Desktop\مشروعات\مشروع تخرج\Portfolio\Screenshot 2025-05-01 164741.png.jpg",
+                    desc: "A dashboard to monitor marketing campaign performance and measure ROI across various channels."
+                }
+            ];
+
+            const portfolioGrid = document.getElementById('portfolio-grid');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.close-btn');
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const analysisResult = document.getElementById('analysis-result');
+            const loader = document.getElementById('loader');
+
+            projects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${project.img}" alt="${project.title}" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">${project.title}</h3>
+                        <p class="card-desc">${project.desc}</p>
+                    </div>
+                `;
+                card.querySelector('.card-img').addEventListener('click', () => {
+                    openLightbox(project.img);
+                });
+                portfolioGrid.appendChild(card);
+            });
+            
+            function openLightbox(imgSrc) {
+                lightboxImg.src = imgSrc;
+                lightbox.classList.add('visible');
+                analysisResult.innerHTML = '';
+                analyzeBtn.disabled = false;
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('visible');
+            }
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            analyzeBtn.addEventListener('click', handleAnalysis);
+
+            async function handleAnalysis() {
+                loader.style.display = 'block';
+                analysisResult.innerHTML = '';
+                analyzeBtn.disabled = true;
+
+                try {
+                    const base64ImageData = await imageUrlToBase64(lightboxImg.src);
+                    const result = await callGeminiAPI(base64ImageData);
+                    analysisResult.textContent = result;
+                } catch (error) {
+                    console.error('Error during analysis:', error);
+                    analysisResult.textContent = 'An error occurred while trying to analyze the image. Please try again.';
+                } finally {
+                    loader.style.display = 'none';
+                }
+            }
+
+            async function callGeminiAPI(base64ImageData) {
+                const apiKey = ""; // Leave empty
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                
+                const prompt = `Act as an expert senior data analyst. Analyze this dashboard image. 
+                1. What are the key performance indicators (KPIs) being tracked?
+                2. What is the main story the data is telling? What are the key insights?
+                3. Suggest one potential improvement or a related question to investigate further.
+                Provide the response in clear, professional English, formatted with headings.`;
+                
+                const payload = {
+                    contents: [ { role: "user", parts: [ { text: prompt }, { inlineData: { mimeType: "image/jpeg", data: base64ImageData } } ] } ],
+                };
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) throw new Error(`API call failed with status: ${response.status}`);
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0].text) {
+                    return result.candidates[0].content.parts[0].text;
+                } else {
+                    return "The AI could not analyze the image. There might be an issue with the response.";
+                }
+            }
+
+            async function imageUrlToBase64(url) {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
